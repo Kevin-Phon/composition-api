@@ -1,33 +1,28 @@
 <template>
-  <h1>Reactive vs ref</h1>
-  <p>User one - {{user1}}</p>
-  <p>User two - {{user2}}</p>
-  <p>Person two - {{person2.name}}</p>
-  <button @click="changeOne">User1 button</button>
-  <button @click="changeTwo">User2 button</button>
-  <button @click="personTwo">Person2 button</button>
+  <div class="home">
+    <input type="text" v-model="search">
+    <p>Search item - {{search}}</p>
+    <div v-for="name in filteredNames" :key="name">
+      {{name}}
+    </div>
+  </div>
 </template>
 
 <script>
-import { reactive, ref } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
+import { computed } from '@vue/runtime-core'
 export default {
   setup(){
-    let user1 = ref("Kevin")
-    let user2 = reactive("Phon")
+    let search = ref("")
+    let names = ref(["kyaw","swa","wai","phone","kevin"])
 
-    let person2 = reactive({name:"KS"})
+    let filteredNames = computed(()=>{
+      return names.value.filter(name=>{
+        return name.includes(search.value)
+      })
+    })
 
-    let changeOne=()=>{
-      user1.value = "KayAs"
-    }
-    let changeTwo=()=>{
-      user2 = "WP" // in reactive dose not need .value but only in object and array
-    }
-    let personTwo=()=>{
-      person2.name = "wp" //not need .value because its object
-    }
-
-    return {user1,user2,changeOne,changeTwo,person2,personTwo}
+    return{names,search,filteredNames}
   }
 }
 </script>
