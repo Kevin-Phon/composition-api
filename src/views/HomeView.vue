@@ -1,27 +1,42 @@
 <template>
-  <div v-if="showPost"> 
-    <PostsList :posts="posts"></PostsList>
-  </div>
-  <button @click="showPost=!showPost">Toggle Post</button>
-  <button @click="posts.pop()">Delete</button>
+    <div class="home">
+      <div v-if="error">
+        {{error}}
+      </div>
+      <div v-if="posts.length>0">
+        <PostsList :posts="posts"></PostsList>
+      </div>
+      <div v-else>
+        <loading class=""></loading>
+      </div>
+    </div>
 </template>
 
 <script>
-import PostsList from '../components/PostsList'
 import { ref } from '@vue/reactivity'
+import PostsList from '../components/PostsList'
 
 export default {
   components: { PostsList },
   setup(){
-    let showPost = ref(true)
-    let posts = ref([
-      {title:"post title 1",body:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores a numquam dolore itaque est tempora, deserunt, nam earum aperiam dolor deleniti error perferendis quod. Nostrum quod eos velit ea laudantium. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut, dolorum. Soluta at suscipit illum quos, delectus in nobis dolores fuga tempora sapiente! Adipisci quaerat, eveniet placeat consequatur qui rerum dicta.",id:1},
-      {title:"post title 2",body:"lorem ipsum",id:2},
-      {title:"post title 3",body:"lorem ipsum",id:3},
-      {title:"post title 4",body:"lorem ipsum",id:4}
-    ])
+    let error = ref("")
+    let posts = ref([])
 
-    return {posts,showPost}
+    let load=async()=>{
+      try{
+        let response = await fetch('http://localhost:3000/posts') //fetch is a promise so use await
+        if(response.status===404){
+          throw new Error('Not Found URL')
+        }
+        let datas = await response.json() //response.json() is a promise so use await
+        posts.value = datas
+      }
+      catch(err){
+        error.value = err.message
+      }
+    }
+    load()
+    return {posts,error}
   }
 }
 </script>
