@@ -7,35 +7,22 @@
         <PostsList :posts="posts"></PostsList>
       </div>
       <div v-else>
-        <loading class=""></loading>
+        loading...
       </div>
     </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+
 import PostsList from '../components/PostsList'
+import getPosts from '../composables/getPosts'
 
 export default {
   components: { PostsList },
   setup(){
-    let error = ref("")
-    let posts = ref([])
+    let{posts,error,load} = getPosts()
 
-    let load=async()=>{
-      try{
-        let response = await fetch('http://localhost:3000/posts') //fetch is a promise so use await
-        if(response.status===404){
-          throw new Error('Not Found URL')
-        }
-        let datas = await response.json() //response.json() is a promise so use await
-        posts.value = datas
-      }
-      catch(err){
-        error.value = err.message
-      }
-    }
-    load()
+    load();
     return {posts,error}
   }
 }
