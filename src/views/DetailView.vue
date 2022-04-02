@@ -4,15 +4,17 @@
       <p>{{post.body}}</p>
   </div>
   <div v-else>
-      Loading...
+      <SpinNer></SpinNer>
   </div>
 </template>
 
 <script>
 
+import SpinNer from '../components/SpinNer'
 import getPost from '../composables/getPost'
 
 export default {
+  components: { SpinNer },
     props:['id'],
     setup(props){
         let {post,error,load} = getPost(props.id);
