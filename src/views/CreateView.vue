@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="addPost">
       <label>Title</label>
       <input type="text" v-model="title" required>
 
@@ -32,7 +32,23 @@ export default {
             tag.value = ""
         }
 
-        return {title,body,tag,tags,handleKeydown}
+        let addPost=()=>{
+          fetch("http://localhost:3000/posts",{
+            method:"POST",
+            headers:{
+              "Content-type":"application/json"
+            },
+            body:JSON.stringify(
+              {
+                title:title.value,
+                body:body.value,
+                tags:tags.value
+              }
+            )
+          })
+        }
+      
+      return {title,body,tag,tags,handleKeydown,addPost}
     }
 }
 </script>
