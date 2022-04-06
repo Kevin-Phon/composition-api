@@ -1,58 +1,30 @@
 {
   "posts": [
+    
     {
-      "title": "post title 1",
-      "body": "lorem ipsum",
-      "id": 1
-    },
-    {
-      "title": "post title 2",
-      "body": "lorem ipsum",
-      "id": 2
-    },
-    {
-      "title": "post title 3",
-      "body": "lorem ipsum",
+      "title": "post 2",
+      "body": "post 2",
+      "tags": [
+        "vuejs",
+        "web"
+      ],
       "id": 3
     },
     {
-      "title": "Post title 4",
-      "body": "post body",
+      "title": "post 3",
+      "body": "post 3",
       "tags": [
-        "html",
-        "css"
+        "laravel"
       ],
       "id": 4
     },
     {
-      "title": "post title 5",
-      "body": "post body 5",
+      "title": "post 4",
+      "body": "post 4",
       "tags": [
-        "python",
-        "Django",
-        "Vuejs",
-        "Laravel"
+        "vuejs"
       ],
       "id": 5
-    },
-    {
-      "title": "Post title 6",
-      "body": "fjesfhvoip iodvhpap",
-      "tags": [
-        "kayas",
-        "kevin",
-        "phon",
-        ""
-      ],
-      "id": 6
-    },
-    {
-      "title": "title 7",
-      "body": "fdaf",
-      "tags": [
-        ""
-      ],
-      "id": 7
     }
   ]
 }
