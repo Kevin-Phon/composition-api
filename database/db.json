@@ -1,6 +1,5 @@
 {
   "posts": [
-    
     {
       "title": "post 2",
       "body": "post 2",
@@ -25,6 +24,14 @@
         "vuejs"
       ],
       "id": 5
+    },
+    {
+      "title": "News",
+      "body": "news",
+      "tags": [
+        "news"
+      ],
+      "id": 6
     }
   ]
 }
