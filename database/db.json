@@ -32,6 +32,14 @@
         "news"
       ],
       "id": 6
+    },
+    {
+      "title": "Genshin Impact",
+      "body": "GI",
+      "tags": [
+        "ORPG"
+      ],
+      "id": 7
     }
   ]
 }
